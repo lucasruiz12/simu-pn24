@@ -37,15 +37,14 @@ function simularTabla(tabla) {
         puntos: puntosActualizados[equipo.nombre],
     }));
 
-    nuevaTabla.sort((a, b) => b.puntos - a.puntos).sort((a, b) => {
-        if(a.puntos === b.puntos){
-            if(a.nombre === "Gimnasia"){
-                return 1
-            } else {
-                return -1
-            };
-        };
-    });
+    nuevaTabla.sort((a, b) => {
+      if (b.puntos !== a.puntos) {
+        return b.puntos - a.puntos;
+      } else {
+          if (a.nombre === "Gimnasia") return 1;
+          if (b.nombre === "Gimnasia") return -1;
+      };
+    };
     return nuevaTabla;
 };
 
