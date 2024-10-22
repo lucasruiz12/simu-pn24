@@ -80,7 +80,7 @@ botonReset.addEventListener("click", () => renderTabla(tabla));
 divButtons.append(botonReset);
 
 const botonProbabilidadFuera = document.createElement("button");
-botonProbabilidadFuera.innerText = "Simular 10.000 veces";
+botonProbabilidadFuera.innerText = "Simular 100.000 veces";
 botonProbabilidadFuera.addEventListener("click", () => calcularProbabilidadGimnasia(tabla));
 divButtons.append(botonProbabilidadFuera);
 

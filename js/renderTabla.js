@@ -84,7 +84,7 @@ function generarTablaResultados(partidos) {
     const header = tabla.createTHead();
     const headerRow = header.insertRow();
 
-    const headers = ["Equipo", "F37", "F38"];
+    const headers = ["Equipo", "F38"];
     headers.forEach(texto => {
         const th = document.createElement("th");
         th.innerText = texto;

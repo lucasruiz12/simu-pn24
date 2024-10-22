@@ -43,28 +43,28 @@ function simularTabla(tabla) {
 
 function calcularProbabilidadGimnasia(tabla, simulaciones = 100000) {
 
-    let contadorUltimosPuestos = 0;
-    let contadorPrimerosPuestos = 0;
+    let contadorQuinto = 0;
+    let contadorCuarto = 0;
+    let contadorTercero = 0;
 
     for (let i = 0; i < simulaciones; i++) {
         const tablaSimulada = simularTabla(tabla);
         const posicionGimnasia = tablaSimulada.findIndex(equipo => equipo.nombre === "Gimnasia");
 
-        if (posicionGimnasia >= tablaSimulada.length - 1) {
-            contadorUltimosPuestos++;
-        };
+        if(posicionGimnasia === 0){
+            contadorTercero++;
+        } else if(posicionGimnasia === 1){
+            contadorCuarto++;
+        } else {
+            contadorQuinto++;
+        }
 
-        if (posicionGimnasia === 0 || posicionGimnasia === 1) {
-            contadorPrimerosPuestos++;
-        };
     };
 
-    const probabilidadUltimo = (contadorUltimosPuestos / simulaciones) * 100;
-    const probabilidadArriba = (contadorPrimerosPuestos / simulaciones) * 100;
-    const mensaje = (`Sobre ${simulaciones} simulaciones realizadas, Gimnasia quedó último en ${contadorUltimosPuestos} de ellas.
-Esto da un porcentaje del : ${probabilidadUltimo.toFixed(3)}% de quedar fuera del reducido
-
-Sobre ${simulaciones} simulaciones realizadas, Gimnasia quedó 3ro o 4to en ${contadorPrimerosPuestos} de ellas.
-Esto da un porcentaje del : ${probabilidadArriba.toFixed(3)}% de quedar 3ros o 4tos`);
+    const probabilidadQuinto = (contadorQuinto / simulaciones) * 100;
+    const probabilidadCuarto = (contadorCuarto / simulaciones) * 100;
+    const probabilidadTercero = (contadorTercero / simulaciones) * 100;
+    const mensaje = (`Sobre ${simulaciones} simulaciones realizadas, Gimnasia quedó tercero en ${contadorTercero} de ellas, cuarto en ${contadorCuarto} de ellas y quinto en ${contadorQuinto} de ellas.
+Esto da un porcentaje del ${probabilidadTercero.toFixed(3)}%, ${probabilidadCuarto.toFixed(3)}% y ${probabilidadQuinto.toFixed(3)}% respectivamente`);
     alert(mensaje);
 };
