@@ -40,9 +40,9 @@ function simularTabla(tabla) {
     nuevaTabla.sort((a, b) => b.puntos - a.puntos).sort((a, b) => {
         if(a.puntos === b.puntos){
             if(a.nombre === "Gimnasia"){
-                return -1
-            } else {
                 return 1
+            } else {
+                return -1
             };
         };
     });
