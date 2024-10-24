@@ -44,7 +44,8 @@ function simularTabla(tabla) {
           if (a.nombre === "Gimnasia") return 1;
           if (b.nombre === "Gimnasia") return -1;
       };
-    };
+    });
+
     return nuevaTabla;
 };
 

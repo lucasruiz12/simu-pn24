@@ -29,19 +29,19 @@ function simularFechas(tabla) {
                 const resultadoRival = simularResultado();
 
                 if (resultadoEquipo > resultadoRival) {
-                    partidos.push({equipo: equipo.nombre, resultado: "O", rival: rivalNombre})
+                    partidos.push({ equipo: equipo.nombre, resultado: "O", rival: rivalNombre })
                     puntosActualizados[equipo.nombre] += 3;
                 } else if (resultadoEquipo < resultadoRival) {
-                    partidos.push({equipo: equipo.nombre, resultado: "X", rival: rivalNombre})
+                    partidos.push({ equipo: equipo.nombre, resultado: "X", rival: rivalNombre })
                     puntosActualizados[rivalNombre] += 3;
                 } else {
-                    partidos.push({equipo: equipo.nombre, resultado: "-", rival: rivalNombre})
+                    partidos.push({ equipo: equipo.nombre, resultado: "-", rival: rivalNombre })
                     puntosActualizados[equipo.nombre] += 1;
                     puntosActualizados[rivalNombre] += 1;
                 };
             } else {
-                const partidoRepetido = partidos.find(el => (el.equipo === partidoId.split("-")[0] && el.rival === partidoId.split("-")[1]) || (partidoId.split("-")[1] && el.rival === partidoId.split("-")[0]) );
-                
+                const partidoRepetido = partidos.find(el => (el.equipo === partidoId.split("-")[0] && el.rival === partidoId.split("-")[1]) || (partidoId.split("-")[1] && el.rival === partidoId.split("-")[0]));
+
                 const resultadoInvertido = (resultado) => {
                     switch (resultado) {
                         case "O":
@@ -52,8 +52,8 @@ function simularFechas(tabla) {
                             return "-"
                     };
                 };
-                
-                partidos.push({equipo: partidoRepetido.rival, resultado: resultadoInvertido(partidoRepetido.resultado), rival: partidoRepetido.equipo})
+
+                partidos.push({ equipo: partidoRepetido.rival, resultado: resultadoInvertido(partidoRepetido.resultado), rival: partidoRepetido.equipo })
             };
         });
     });
@@ -63,7 +63,14 @@ function simularFechas(tabla) {
         puntos: puntosActualizados[equipo.nombre],
     }));
 
-    nuevaTabla.sort((a, b) => b.puntos - a.puntos);
+    nuevaTabla.sort((a, b) => {
+        if (b.puntos !== a.puntos) {
+            return b.puntos - a.puntos;
+        } else {
+            if (a.nombre === "Gimnasia") return 1;
+            if (b.nombre === "Gimnasia") return -1;
+        };
+    });
 
     renderTabla(nuevaTabla);
     generarTablaResultados(partidos);
